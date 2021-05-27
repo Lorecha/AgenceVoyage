@@ -7,6 +7,8 @@ import com.lip6.entities.Address;
 import com.lip6.entities.Client;
 import com.lip6.entities.Personne;
 import com.lip6.entities.Voyageur;
+import com.lip6.model.Raddclient;
+import com.lip6.resources.RaddclientResource;
 
 import org.springframework.stereotype.Repository;
 
@@ -15,75 +17,48 @@ import com.lip6.util.JpaUtil;
 @Repository("RepDAOClient")
 public class DAOClient implements IDAOClient {
 
-	public boolean addClient(String fname,String lname, String email,String civilite, String rue,String ville, String codepostal,String region,String pays, String age, String nrp)
+	public boolean addClient(Raddclient modelclient)
 	{
 		 boolean success=false;
 
 			try {
-		    EntityManager em=JpaUtil.getEmf().createEntityManager();
-
-			// 2 : Ouverture transaction 
-			EntityTransaction tx =  em.getTransaction();
-			tx.begin();
+				EntityManager em=JpaUtil.getEmf().createEntityManager(); // 2 : Ouverture transaction 
+				EntityTransaction tx =  em.getTransaction();
+				tx.begin();
 			
-			// 3 : Instanciation Objet(s) m�tier (s)
-	    	// 4 : Persistance Objet/Relationnel : cr�ation d'un enregistrement en base
-
+			
 
 				Address adr= new Address();
-				adr.setRue(rue);
-				adr.setVille(ville);
-				adr.setCodePostal(codepostal);
-				adr.setRegion(region);
-				adr.setPays(pays);
-				
-			/*	Personne pers=new Personne();
-				pers.setNom(fname);
-				pers.setPrenom(lname);
-				pers.setCivilite(civilite);
-				pers.setEmail(email);
-				pers.setAddress(adr);
-						*/
-				
-				
+				adr.setRue( modelclient.getRue());
+				adr.setVille(modelclient.getVille());
+				adr.setCodePostal(modelclient.getCodepostal());
+				adr.setRegion(modelclient.getRegion());
+				adr.setPays(modelclient.getPays());
+			
 				
 				Voyageur v= new Voyageur();
-				v.setNom(fname);
-				v.setPrenom(lname);
+				v.setNom(modelclient.getFname());
+				v.setPrenom(modelclient.getLname());
 				v.setAddress(adr);
-				v.setCivilite(civilite);
-				v.setEmail(email);
-				v.setAge(age);
-				v.setNumeroPieceIdentite(nrp);
+				v.setCivilite(modelclient.getCivilite());
+				v.setEmail(modelclient.getEmail());
+				v.setAge(modelclient.getAge());
+				v.setNumeroPieceIdentite(modelclient.getNrp());
+				//dans l'ipotheze que le client est aussi un voyageur
 				
-				Client client =new Client(fname,email);
+				Client client =new Client(modelclient.getFname(),modelclient.getEmail());
 				client.setAddress(adr);
 				client.setPrenom(v.getPrenom());
 				
 				 
 				em.persist(adr)	;
-			//   em.persist(pers);	
-		      em.persist(v);
-          	     //on vas dire que le client est aussi un voyageur
-			em.persist(client);
-			
-			
-			//ici l'objet est dans un �tat manag� par l'EM, pas besoin d'un nouveau persist
-			
-			
-			// 5 : Fermeture transaction 
+			    em.persist(v);
+          	   	em.persist(client);
+						
 			tx.commit();
-			
-			//ici l'objet est dans un �tat d�tach� de l'EM, la modif ne sera pas commit�e
-
-			 
-			// 6 : Fermeture de l'EntityManager et de unit� de travail JPA 
+					
 			em.close();
-		//	System.out.println("les contact ajoutes"+pers+v+client);
-			// 7: Attention important, cette action ne doit s'executer qu'une seule fois et non pas à chaque instantiation du ContactDAO
-			//Donc, pense bien à ce qu'elle soit la dernière action de votre application
-			//JpaUtil.close();	
-			
+		
 			success=true;
 			}
 			catch (Exception e) {
@@ -93,6 +68,13 @@ public class DAOClient implements IDAOClient {
 			return success;
 			
 		}
+
+	@Override
+	public boolean addClient(String fname, String lname, String email, String civilite, String rue, String ville,
+			String codepostal, String region, String pays, String age, String nrp) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 	
 
 

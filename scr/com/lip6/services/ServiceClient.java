@@ -17,7 +17,7 @@ public class ServiceClient {
 // 	//dao.addContact(contact);
 // 	dao.mamethod1(AddContactServlet.fname);
 // }
-
+//post
 	public void addClient(String fname,String lname,String email, String civilite,String rue, String ville, String codepostal,String region,String pays, String age, String nrp) {
 		dao.addClient(fname,lname,email, civilite,rue, ville,  codepostal,region, pays, age, nrp);
     }

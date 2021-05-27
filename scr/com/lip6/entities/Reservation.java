@@ -27,7 +27,8 @@ public class Reservation implements Serializable{
 
 	private static final long serialVersionUID = 351281611899390797L;
 
-	@Id@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	protected int idReservation; 
 
 	@ManyToMany

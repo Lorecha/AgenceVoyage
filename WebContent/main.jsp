@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,8 +7,8 @@
 <title>Main Page</title>
 </head>
 <body>
-<a href="CreateContact.jsp">Add a new Contact</a> 
-<br></br>
-<a href="FindContact.jsp">Find Contact</a>
+	<a href="CreateClient.jsp">Add a new Contact</a>
+	<br></br>
+	<a href="FindContact.jsp">Find Contact</a>
 </body>
 </html>

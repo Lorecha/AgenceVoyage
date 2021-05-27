@@ -37,109 +37,106 @@ public class Voyage implements Serializable {
   
   private double prix;
   
-  @OneToOne(mappedBy="voyage",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
- private Formule formule;
+ 
+  @OneToMany//(mappedBy="voyage",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  private List<Prestation> mesprestations;
   
-  @OneToMany(mappedBy="voyage",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+  public List<Prestation> getMesprestations() {
+	return mesprestations;
+}
+
+
+
+public Voyage() {
+	super();
+}
+
+
+
+public void setMesprestations(List<Prestation> mesprestations) {
+	this.mesprestations = mesprestations;
+}
+
+
+
+@OneToMany(mappedBy="voyage",cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	private List<Reservation> mesReservations;   //voyage "voit" la liste de reservaation => y acceder
 
   @OneToOne(mappedBy="idDestination")
   private Destination destination;
   private static int compteur=0;
 
-
-
-	public Voyage() {
+public Voyage(long idVoyage, double prix, List<Prestation> mesprestations, List<Reservation> mesReservations,
+		Destination destination) {
 	super();
+	this.idVoyage = idVoyage;
+	this.prix = prix;
+	this.mesprestations = mesprestations;
+	this.mesReservations = mesReservations;
+	this.destination = destination;
 }
 
 
 
-	public long getIdVoyage() {
-		return idVoyage;
-	}
+public long getIdVoyage() {
+	return idVoyage;
+}
 
 
 
-	public void setIdVoyage(long idVoyage) {
-		this.idVoyage = idVoyage;
-	}
+public void setIdVoyage(long idVoyage) {
+	this.idVoyage = idVoyage;
+}
 
 
 
-	public double getPrix() {
-		return prix;
-	}
+public double getPrix() {
+	return prix;
+}
 
 
 
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
+public void setPrix(double prix) {
+	this.prix = prix;
+}
 
 
 
-	
-
-
-	public Formule getFormule() {
-		return formule;
-	}
+public List<Reservation> getMesReservations() {
+	return mesReservations;
+}
 
 
 
-	public void setFormule(Formule formule) {
-		this.formule = formule;
-	}
+public void setMesReservations(List<Reservation> mesReservations) {
+	this.mesReservations = mesReservations;
+}
 
 
 
-	public List<Reservation> getMesReservations() {
-		return mesReservations;
-	}
+public Destination getDestination() {
+	return destination;
+}
 
 
 
-	public void setMesReservations(List<Reservation> mesReservations) {
-		this.mesReservations = mesReservations;
-	}
+public void setDestination(Destination destination) {
+	this.destination = destination;
+}
 
 
 
-	public Destination getDestination() {
-		return destination;
-	}
+public static int getCompteur() {
+	return compteur;
+}
 
 
 
-	public void setDestination(Destination destination) {
-		this.destination = destination;
-	}
-
+public static void setCompteur(int compteur) {
+	Voyage.compteur = compteur;
+}
 
 
 
 
-	public Voyage(long idVoyage, double prix, Formule formule, List<Reservation> mesReservations,
-			Destination destination) {
-		super();
-		this.idVoyage = idVoyage;
-		this.prix = prix;
-		this.formule = formule;
-		this.mesReservations = mesReservations;
-		this.destination = destination;
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Voyage{" +
-				"idVoyage=" + idVoyage +
-				", prix=" + prix +
-				", Formule=" + formule +
-				", mesReservations=" + mesReservations +
-				", destination=" + destination +
-				'}';
-	}
 }
