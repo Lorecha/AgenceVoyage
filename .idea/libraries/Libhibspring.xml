@@ -1,13 +1,16 @@
 <component name="libraryTable">
-  <library name="Libhibspring">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/../../../../Libhibspring" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES>
-      <root url="file://$PROJECT_DIR$/../../../../Libhibspring" />
-    </SOURCES>
-    <jarDirectory url="file://$PROJECT_DIR$/../../../../Libhibspring" recursive="false" />
-    <jarDirectory url="file://$PROJECT_DIR$/../../../../Libhibspring" recursive="false" type="SOURCES" />
-  </library>
+	<library name="Libhibspring">
+		<CLASSES>
+			<root url="file://$PROJECT_DIR$/../../../../Libhibspring" />
+		</CLASSES>
+		<JAVADOC />
+		<SOURCES>
+			<root url="file://$PROJECT_DIR$/../../../../Libhibspring" />
+		</SOURCES>
+		<jarDirectory
+			url="file://$PROJECT_DIR$/../../../../Libhibspring" recursive="false" />
+		<jarDirectory
+			url="file://$PROJECT_DIR$/../../../../Libhibspring" recursive="false"
+			type="SOURCES" />
+	</library>
 </component>
